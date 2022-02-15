@@ -1,4 +1,10 @@
 
+/**
+ * Script for admin page. This file has all methods needed for operations on admin page
+ * 
+ * Also, the graph search impemented here. Based on the input valuein the search bar. The text is parsed and 
+ * sent to the /graphql route.
+ */
 var form = document.getElementById('app-config');
 
 var input = document.getElementById('tweets_limit');
@@ -40,7 +46,7 @@ search.addEventListener('submit', function (e) {
             if (searchInput.value.includes('#')) {
                 hashtag = searchInput.value;
             } else if (searchInput.value.includes('@')) {
-                username = searchInput.value;
+                username = searchInput.value.replace('@', '');
             } else {
                 text = searchInput.value;
             }
@@ -63,7 +69,7 @@ search.addEventListener('submit', function (e) {
 
         $.ajax(settings)
             .done(function (response) {
-                console.log(response);
+                document.getElementById("search-results").innerHTML = JSON.stringify({results: response.data.Tweets.fetch}, null, '\t');
             });
     }
 });

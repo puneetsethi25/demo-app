@@ -3,8 +3,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var { graphqlHTTP } = require('express-graphql');
-var graphql = require('graphql');
 const rootQuery = require('./graphql/graph');
 
 var cors = require('cors')
@@ -27,7 +25,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/graphql', rootQuery);
-
 
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);

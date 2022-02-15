@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const path = require('path');
 
-/* GET home page. */
+/* GET renders home page for users */
 router.get('/', function (req, res, next) {
   res.sendFile(path.resolve('views/index.html'))
 });

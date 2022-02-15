@@ -3,6 +3,8 @@ var router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
+/* has all routes for admin page */
+
 router.get('/', function (req, res, next) {
     res.sendFile(path.resolve('views/admin.html'), { data: 123 })
 })

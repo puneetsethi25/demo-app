@@ -1,14 +1,17 @@
 
-var userData = require('../data/user.json')
+var userData = require('../db/user.json')
 const path = require('path');
 const fs = require('fs');
 
+/**
+ * Basic User model for all user related operations
+ */
 const User = {
     findAll: (query, callback) => callback(false, userData),
     register: function (post, callback) {
         if (post) {
             userData.push(post);
-            fs.writeFile(path.resolve('data/user.json'), JSON.stringify(userData), function writeJSON(err) {
+            fs.writeFile(path.resolve('db/user.json'), JSON.stringify(userData), function writeJSON(err) {
                 if (err) {
                     callback(true, err)
                 }

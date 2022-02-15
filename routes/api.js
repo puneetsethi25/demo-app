@@ -2,7 +2,14 @@ const express = require("express");
 const User = require("../models/User");
 var router = express.Router();
 
-/* GET users listing. */
+
+/* Base API routes */
+
+/**
+ * GET gets all users lists.
+ * 
+ * @params N/A
+ */
 router.get('/user', function (req, res, next) {
   User.findAll({}, (err, data) => {
     if (err) {
@@ -13,6 +20,11 @@ router.get('/user', function (req, res, next) {
   });
 });
 
+/**
+ * POST users registeration.
+ * 
+ * @param {} object with user data to be registerd
+ */
 router.post('/user/register', function (req, res, next) {
   User.register(req.body, (err, data) => {
     if (err) {

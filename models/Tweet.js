@@ -1,8 +1,16 @@
-var tweetData = require('../data/tweet.json')
+var tweetData = require('../db/tweet.json')
 const path = require('path');
 const fs = require('fs');
 const config = require('../config/config.json');
 
+/**
+ * Base Tweet Model. Has all methods needed to be operted on Tweets.
+ * 
+ * CRUD operations related to Tweets exist in this model. 
+ * 
+ * @todo Move the operations to PostgresQL
+ * 
+ */
 const Tweet = {
     findAll: (query, callback) => callback(false, tweetData),
     findTweetsby: function (data, callback) {
@@ -20,6 +28,11 @@ const Tweet = {
             callback(1, { error: "Missing required parameter" });
         }
     },
+    /**
+     * 
+     * @param {*} data 
+     * @param {*} callback 
+     */
     searchTweets: function (data, callback) {
         var results = [];
         if (Object.keys(data).length > 0) {
@@ -40,6 +53,13 @@ const Tweet = {
             callback(1, { error: "Missing required parameter" });
         }
     },
+    /**
+     * adds a new tweet into the database. Adds the incremented `id` for each tweet entered
+     * @returns void
+     * 
+     * @param {*} tweet Object with keys - text, location, username  
+     * @param {*} callback function that is called upon execution with 2 arguments. `arg1`=`error?` and `arg2`=data
+     */
     add: async function (tweet, callback) {
         let limitReached = false, loc_alert = false; 
         if (tweet) {
@@ -52,7 +72,7 @@ const Tweet = {
                 limitReached = true;
             }
             tweetData.push({ ...tweet, id: tweetData.length + 1 });
-            fs.writeFile(path.resolve('data/tweet.json'), JSON.stringify(tweetData), function writeJSON(err) {
+            fs.writeFile(path.resolve('db/tweet.json'), JSON.stringify(tweetData), function writeJSON(err) {
                 if (err) {
                     callback(true, err)
                 }

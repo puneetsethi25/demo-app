@@ -2,7 +2,7 @@ const express = require("express");
 var router = express.Router();
 const Tweet = require("../models/Tweet");
 
-/* GET users listing. */
+/* GET tweets listing. */
 router.get('/', function (req, res, next) {
     Tweet.findAll({}, (err, data) => {
         if (err) {

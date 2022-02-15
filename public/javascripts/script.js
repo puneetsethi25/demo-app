@@ -16,13 +16,18 @@ if (uname && loc) {
         data.map((msg) => {
             var item = document.createElement('li');
             let className = msg.limit_reached ? 'reward' : '';
+            let featuredTweet = msg.limit_reached ? `<div class="ribbon base"><span><i>Pinned Tweet!!</i></span></div>` : '';
             var html = `
-            <div class="card ${className}">
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                    <p>${msg.text}</p>
-                    <footer class="blockquote-footer ">@${msg.username} from <cite title="Source Title">${msg.location}</cite></footer>
-                    </blockquote>
+            <div>
+                <div class="card ${className}">
+                    ${featuredTweet}
+                    <div class="card-body ">
+                        <blockquote class="blockquote mb-0">
+                        <p>${msg.text}</p>
+                        <footer class="blockquote-footer ">@${msg.username} from <cite title="Source Title">${msg.location}</cite></footer>
+                        </blockquote>
+                    </div>
+                    
                 </div>
             </div>`
             item.innerHTML = html;

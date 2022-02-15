@@ -1,8 +1,16 @@
-var { graphql, buildSchema } = require('graphql');
+var { buildSchema } = require('graphql');
 var { graphqlHTTP } = require('express-graphql');
-const tweetData = require('../data/tweet.json');
+const tweetData = require('../db/tweet.json');
 const Tweet = require('../models/Tweet');
 
+/**
+ * JustAnotherRatherVeryInitialSchema used for this app. This can get more complex
+ * depending upon the increasing requirements and complexities in the app
+ * 
+ * NOTE: The data is fetched from a json files but can be to NoSQL or SQL later.
+ * 
+ * @todo Integrate MongoDB/PostgresQL into the app
+ */
 var schema = buildSchema(`
     input TwtInput {
         text: String
@@ -38,6 +46,9 @@ var schema = buildSchema(`
     }
 `);
 
+/**
+ * Base Input class for TWT
+ */
 class Twt {
     constructor(id, text, username, location, hashtag, limit = 100) {
         this.id = id;
@@ -49,6 +60,9 @@ class Twt {
     }
 }
 
+/**
+ * Base Schema class for Tweets 
+ */
 class Tweets {
     constructor(username, location, text, hashtag, limit ) {
         this.username = username;
@@ -69,13 +83,21 @@ class Tweets {
     byHashtag() {
         return tweetData.filter(t => t.text.includes(this.hashtag)).slice(0, this.limit);
     }
+    /**
+     * Implements `AND` clause
+     * 
+     * Fetches the matched results by implementing `AND` Clause condition on all provided values. 
+     * If values are empty, default all tweets returned. 
+     * 
+     * @returns Array of matched result if all values are matched
+     */
     fetch() {
         var query = [];
+        console.log(this);
         if (this.username) { query.push('username'); }
         if (this.location) { query.push('location'); }
         if (this.hashtag) { query.push('hashtag'); }
         if (this.text) { query.push('text'); }
-        console.log(query);
         var results = tweetData.filter(elem => {
             var matched = true;
             for (const key of query) {
@@ -95,8 +117,6 @@ class Tweets {
                 return elem;
             }
         });
-        console.log(this);
-        console.log(results);
         return results.slice(0, this.limit);
     }
 }
