@@ -1,0 +1,23 @@
+{
+  "name": "swym-app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-graphql": "^0.12.0",
+    "graphiql": "^1.5.17",
+    "graphql": "^16.3.0",
+    "http-errors": "^2.0.0",
+    "mongoose": "^6.2.1",
+    "morgan": "~1.9.1",
+    "path": "^0.12.7",
+    "socket.io": "^4.4.1",
+    "twig": "~0.10.3"
+  }
+}

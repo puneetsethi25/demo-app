@@ -1,0 +1,37 @@
+[
+    {
+        "user_name": "Puneet",
+        "id": 1,
+        "location": "Ludhiana"
+    },
+    {
+        "user_name": "Rob",
+        "id": 2,
+        "location": "North"
+    },
+    {
+        "user_name": "Arya",
+        "id": 3,
+        "location": "ludhiana"
+    },
+    {
+        "user_name": "Jon",
+        "id": 4,
+        "location": "westros"
+    },
+    {
+        "user_name": "Bran",
+        "id": 5,
+        "location": "Kings Palace"
+    },
+    {
+        "user_name": "Sansa",
+        "id": 6,
+        "location": "Lanister"
+    },
+    {
+        "user_name": "Riccon",
+        "id": 7,
+        "location": "dothraki"
+    }
+]

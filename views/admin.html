@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="stylesheets/admin.css">
+    <title>Admin Panel</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="centered-form">
+        <div class="centered-form__box">
+            <h1>App Settings</h1>
+            <form id="search" action="">
+                <input id="search-input" type="text" style="width: 90%; height: 35px; padding: 5px;"
+                    placeholder="Search tweets..." name="search">
+                <p>
+                    <button type="submit">Search tweets</button>
+                </p>
+            </form>
+            <p></p>
+            <hr>
+            <form id="app-config" action="#" style="border: solid 1px black;padding: 0 20px 0 20px;">
+                <p>
+                    <label for="username">Tweet Limit</label>
+                    <input type="number" id="tweets_limit" name="tweets-limit" placeholder="Max Tweet limit" required>
+                    <details>Set this limit to trigger an action whenver a user has tweeted these many number of tweets</details>
+                </p>
+                <p></p><br>
+                <p>
+                    <label for="room">Location Alert</label>
+                    <input type="text" id="loc_alert" name="location" placeholder="location to watch" required>
+                    <details>Set this alert for location. An event will be triggered whenever a tweet will be made from this set location. </details>
+                </p>
+                <p></p>
+                <button>Save</button>
+                <p></p>
+            </form>
+        </div>
+    </div>
+    <script src="javascripts/admin.js"></script>
+</body>
+
+</html>
